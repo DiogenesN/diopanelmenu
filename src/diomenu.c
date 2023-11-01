@@ -114,18 +114,29 @@ static void bind_listitem(GtkListItemFactory *factory, GtkListItem *list_item) {
 }
 
 /// action when menu autohides
-static void menu_closed() {
+static void menu_closed(GtkWidget *window) {
 	// Clear (initialize) the data in the array
 	for (int i = 0; i <= strings_counter + 1; i++) {
 		for (int j = 0; j < 1; j++) {
 			names[i][j] = NULL;
+			p_dataOptions->stringsNames = NULL;
+			g_free(names[i][j]);
 			execs[i][j] = NULL;
+			p_dataOptions->stringsExecs = NULL;
+			g_free(execs[i][j]);
 			icons[i][j] = NULL;
+			p_dataOptions->stringsIcons = NULL;
+			g_free(icons[i][j]);
+			paths[i][j] = NULL;
+			g_free(paths[i][j]);
 		}
 	}
 
 	strings_counter = 0;
 	gtk_popover_popdown(GTK_POPOVER(p_dataOptions->diomenu));
+
+	// very important to close the window to prevernt memory leak
+	gtk_window_close(GTK_WINDOW(window));
 }
 
 /// removes selected item from the list
