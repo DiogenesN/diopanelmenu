@@ -8,8 +8,9 @@
 const char *HOME = "HOME";
 
 int get_int_value_from_conf(char *fullPathToConf, char *keyToGetValueFrom) {
-	char buffer[3000];
-	char value[3000];
+	char buffer[777];
+	char value[777];
+
 	FILE *pathToConfig = fopen(fullPathToConf, "r");
 
 	if (pathToConfig == NULL) {
@@ -26,14 +27,17 @@ int get_int_value_from_conf(char *fullPathToConf, char *keyToGetValueFrom) {
 			}
 		}
 	}
+
+	fclose(pathToConfig);
 
 	int valueToNumber = atoi(value);
 	return valueToNumber;
 }
 
 double get_double_value_from_conf(char *fullPathToConf, char *keyToGetValueFrom) {
-	char buffer[3000];
-	char value[3000];
+	char buffer[777];
+	char value[777];
+
 	FILE *pathToConfig = fopen(fullPathToConf, "r");
 
 	if (pathToConfig == NULL) {
@@ -51,13 +55,16 @@ double get_double_value_from_conf(char *fullPathToConf, char *keyToGetValueFrom)
 		}
 	}
 
-	double valueToNumber = atoi(value);
+	fclose(pathToConfig);
+
+	double valueToNumber = atof(value);
 	return valueToNumber;
 }
 
 char *get_char_value_from_conf(char *fullPathToConf, char *keyToGetValueFrom) {
-	char buffer[3000];
-	char value[3000];
+	char buffer[777];
+	char value[777];
+
 	FILE *pathToConfig = fopen(fullPathToConf, "r");
 
 	while (fgets(buffer, sizeof(buffer), pathToConfig) != NULL) {
@@ -69,6 +76,8 @@ char *get_char_value_from_conf(char *fullPathToConf, char *keyToGetValueFrom) {
 			}
 		}
 	}
+
+	fclose(pathToConfig);
 
 	return strdup(value);
 }
