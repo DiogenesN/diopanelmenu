@@ -144,30 +144,22 @@ static void remove_selected() {
 	// important to reset this counter to avoid double items in menu
 	strings_counter = 0;
 
-	selectedForRemove = gtk_single_selection_get_selected(p_dataOptions->selection);
-
-	gtk_string_list_remove(p_dataOptions->stringsNames, selectedForRemove);
-	gtk_string_list_remove(p_dataOptions->stringsExecs, selectedForRemove);
-	gtk_string_list_remove(p_dataOptions->stringsIcons, selectedForRemove);
-
 	// get width and height from config
-	gchar configPath[3000];
+	gchar configPath[1000];
 	gchar *configName = "/.config/diopanel/diomenu/diomenupaths.conf";
     snprintf(configPath, sizeof(configPath), "%s%s", HOME, configName);
 
 	remove_line_number(configPath, selectedForRemove + 1);
 
 	gtk_popover_popdown(GTK_POPOVER(p_dataOptions->popleft));
-	gtk_popover_popdown(GTK_POPOVER(p_dataOptions->diomenu));
 }
 
 /// on diomenu items left click
 static void left_click_menu_item() {
-	gtk_popover_popdown(GTK_POPOVER(p_dataOptions->diomenu));
-
 	// gets currenty selected item
 	GtkStringObject *myItem;
 	myItem = gtk_single_selection_get_selected_item(p_dataOptions->selection);
+	selectedForRemove = gtk_single_selection_get_selected(p_dataOptions->selection);
 
 	const gchar *selectedItem = gtk_string_object_get_string(myItem);
 	gchar *rmessage[77];
@@ -197,7 +189,7 @@ static void left_click_menu_item() {
 	gtk_box_append(GTK_BOX(boxButton), cancelPop);
 
 	// get width and height from config
-	gchar configPath[3000];
+	gchar configPath[1000];
 	gchar *configName = "/.config/diopanel/diomenu/diomenu.conf";
     snprintf(configPath, sizeof(configPath), "%s%s", HOME, configName);
 
@@ -211,7 +203,7 @@ static void left_click_menu_item() {
 	gtk_popover_set_autohide(GTK_POPOVER(popLeft), FALSE);
 	gtk_popover_set_child(GTK_POPOVER(popLeft), boxButton);
 	gtk_popover_set_has_arrow(GTK_POPOVER(popLeft), FALSE);
-	gtk_popover_set_offset(GTK_POPOVER(popLeft), posy + 200, posx - 300);
+	gtk_popover_set_offset(GTK_POPOVER(popLeft), posx + 220, posy - 250);
 
 	p_dataOptions->popleft = popLeft;
 
