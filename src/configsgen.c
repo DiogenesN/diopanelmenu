@@ -72,7 +72,7 @@ void create_configs() {
 		printf("Created initial subdir config files\n");
 		mkdir(dioPanelMenu, 0755);
 
-		closedir(dioappfinder);
+		//closedir(dioappfinder);
 		closedir(dioPanel);
 		closedir(dirdioPanelMenu);
 	}
