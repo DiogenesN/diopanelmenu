@@ -147,7 +147,7 @@ static void remove_selected() {
 	// get width and height from config
 	gchar configPath[1000];
 	gchar *configName = "/.config/diopanel/diomenu/diomenupaths.conf";
-    snprintf(configPath, sizeof(configPath), "%s%s", HOME, configName);
+	snprintf(configPath, sizeof(configPath), "%s%s", HOME, configName);
 
 	remove_line_number(configPath, selectedForRemove + 1);
 
