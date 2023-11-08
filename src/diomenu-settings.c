@@ -50,8 +50,6 @@ static void save_close_btn(gpointer data) {
 	snprintf(writeRestart, sizeof(writeRestart), "%s=%s", "restartcmd", restartText);
 	snprintf(writePoweroff, sizeof(writePoweroff), "%s=%s", "poweroffcmd", poweroffText);
 
-	g_print("hhhhhh pathToConfig %s\n", pathToConfig);
-
 	FILE *configPathOpen	= fopen(pathToConfig, "w+");
 
 	fprintf(configPathOpen, "%s\n", writeHeight);

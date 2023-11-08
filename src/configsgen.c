@@ -46,20 +46,36 @@ void create_configs() {
 
 	DIR *dioappfinder = opendir(fullPath);
 	DIR *dioPanel = opendir(dioPanelFullPath);
+	DIR *dirdioPanelMenu = opendir(dioPanelMenu);
 
 	// cheks if the file already exists
-	if (dioappfinder && dioPanel) {
+	if (dioappfinder && dioPanel && dirdioPanelMenu) {
 		// directory exists
 		closedir(dioappfinder);
 		closedir(dioPanel);
+		closedir(dirdioPanelMenu);
 		return;
 	}
-	else if (errno == ENOENT) {
+	if (!dioPanel) {
     	// directory does not exist
-		printf("Created initial config files\n");
+		printf("Created initial main config files\n");
 		mkdir(fullPath, 0755);
 		mkdir(dioPanelFullPath, 0755);
 		mkdir(dioPanelMenu, 0755);
+
+		closedir(dioappfinder);
+		closedir(dioPanel);
+		closedir(dirdioPanelMenu);
+	}
+	if (!dirdioPanelMenu) {
+    	// directory does not exist
+		printf("Created initial subdir config files\n");
+		mkdir(dioPanelMenu, 0755);
+
+		closedir(dioappfinder);
+		closedir(dioPanel);
+		closedir(dirdioPanelMenu);
+	}
 		
 		//char *path  = "/home/diogenes/.local/share/applications";
 		//char *path2 = "/usr/local/share/applications";
@@ -102,10 +118,4 @@ void create_configs() {
 		fclose(confFileMenuApp);
 		fclose(confFileMenu);
 		fclose(confFile);
-	}
-	else {
-    	perror("Access error!");
-	}
-	closedir(dioappfinder);
-	closedir(dioPanel);
 }

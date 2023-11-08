@@ -475,7 +475,7 @@ static void open_diomenu() {
 	gtk_popover_set_has_arrow(GTK_POPOVER(diomenu), FALSE);
 	gtk_popover_set_offset(GTK_POPOVER(diomenu), yOffset + 210, posx);
 
-	g_signal_connect_swapped(diomenu, "closed", G_CALLBACK(menu_closed), NULL);
+	g_signal_connect_swapped(diomenu, "closed", G_CALLBACK(menu_closed), window);
 
 	p_dataOptions->diomenu = diomenu;
 

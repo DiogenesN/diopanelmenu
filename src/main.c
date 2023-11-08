@@ -78,8 +78,6 @@ static void notify(gpointer data) {
     snprintf(writePosx, sizeof(writePosx), "%s=%d", "posx", posxValue);
     snprintf(writeOpacity, sizeof(writeOpacity), "%s=%d", "opacity", opacity);
 
-	g_print("pathToConfig %s\n", pathToConfig);
-
 	FILE *configPathOpen	= fopen(pathToConfig, "w+");
 
 	fprintf(configPathOpen, "%s\n", writeWidth);
@@ -95,7 +93,7 @@ static void notify(gpointer data) {
 	gtk_popover_popup(GTK_POPOVER(p_dataOptions->pop));
 
 	gtk_widget_set_size_request(GTK_WIDGET(p_dataOptions->pop), widthValue, heightValue);
-	gtk_popover_set_offset(GTK_POPOVER(p_dataOptions->pop), posyValue, posxValue);
+	gtk_popover_set_offset(GTK_POPOVER(p_dataOptions->pop), posxValue, posyValue);
 	gtk_widget_set_opacity(p_dataOptions->pop, opacity);
 
 	g_value_unset(&valueWidth);
@@ -329,7 +327,7 @@ static void activate(GtkApplication *app) {
 	pop = gtk_popover_new();
 	gtk_widget_set_size_request(pop, width, height);
 	gtk_popover_set_autohide(GTK_POPOVER(pop), FALSE);
-	gtk_popover_set_offset(GTK_POPOVER(pop), posy, posx);
+	gtk_popover_set_offset(GTK_POPOVER(pop), posx, posy);
 	gtk_popover_set_has_arrow(GTK_POPOVER(pop), FALSE);
 	gtk_popover_set_child(GTK_POPOVER(pop), popContext);
 	gtk_widget_set_opacity(pop, opacity);
