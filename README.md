@@ -35,11 +35,11 @@ It was tested on Debian 12.
  
 ![Alt text](https://github.com/DiogenesN/dioapanelmenu/blob/main/panelbutton.png)
 
- If you left click on it, you will get the panel settings, adjust the desired size and position:
+ If you right click on it, you will get the panel settings, adjust the desired size and position:
  
 ![Alt text](https://github.com/DiogenesN/dioapanelmenu/blob/main/panelsettings.png)
 
- If you right click on it, you will get an empty menu, to add your favorite applications to it use DioAppFinder (or add full path to config).
+ If you left click on it, you will get an empty menu, to add your favorite applications to it use DioAppFinder (or add full path to config).
  Here is what the menu looks like with applications added:
 
 ![Alt text](https://github.com/DiogenesN/dioapanelmenu/blob/main/panelmenu.png)
